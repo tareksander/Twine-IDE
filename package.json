@@ -1,0 +1,135 @@
+{
+  "name": "twine-ide",
+  "displayName": "Twine IDE",
+  "description": "A development environment for Twine stories",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onWebviewPanel:twine.story"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "twine-ide.build",
+        "title": "Build Story",
+        "icon": {
+            "light": "./res/build.svg",
+            "dark": "./res/build.svg"
+        }
+      },
+      {
+        "command": "twine-ide.run",
+        "title": "Run Story",
+        "icon": {
+            "light": "./res/play.svg",
+            "dark": "./res/play.svg"
+        }
+      },
+      {
+        "command": "twine-ide.goto",
+        "title": "Goto line in Twee file"
+      },
+      {
+        "command": "twine-ide.refresh",
+        "title": "Refresh passages view",
+        "icon": {
+            "light": "./res/refresh.svg",
+            "dark": "./res/refresh.svg"
+        }
+      }
+    ],
+    "languages": [
+        {
+            "id": "twee3",
+            "aliases": [
+                "Twee3"
+            ],
+            "extensions": [
+                "tw",
+                "twee"
+            ],
+            "configuration": "./res/language-configuration.json"
+        }
+    ],
+    "grammars": [
+        {
+            "language": "twee3",
+            "scopeName": "source.twee3",
+            "path": "./res/twee3.json"
+        }
+    ],
+    "views": {
+        "twine": [
+            {
+                "id": "passages",
+                "name": "Passages"
+            }
+        ],
+        "explorer": [
+            {
+                "id": "explorer-passages",
+                "name": "Passages"
+            }
+        ]
+    },
+    "viewsContainers": {
+        "activitybar": [
+            {
+                "icon": "./res/twine.svg",
+                "id": "twine",
+                "title": "Twine"
+            }
+        ]
+    },
+    "menus": {
+        "view/title": [
+            {
+                "group": "navigation@3",
+                "command": "twine-ide.refresh",
+                "when": "view == passages"
+            },
+            {
+                "group": "navigation@2",
+                "command": "twine-ide.build",
+                "when": "view == passages"
+            },
+            {
+                "group": "navigation@1",
+                "command": "twine-ide.run",
+                "when": "view == passages"
+            }
+        ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "npm run compile && code --extensionDevelopmentPath=\"$(pwd)\""
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.86.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "ts-loader": "^9.5.1",
+    "webpack": "^5.90.0",
+    "webpack-cli": "^5.1.4",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.9"
+  }
+}

@@ -1,0 +1,20 @@
+:: StoryTitle
+Example
+
+:: StoryData [ab]
+{
+  "format": "SugarCube",
+  "format-version": "2.36.1",
+  "ifid": "F3E566C-7227-6881-D4AB-F54E1F884013",
+  "start": "Start"
+}
+
+
+
+:: Start
+The start of your story.
+
+:: TweeTools
+{
+    "include": [ "*.twee" ]
+}

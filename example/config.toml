@@ -1,0 +1,21 @@
+# This is a configuration file for twee-tools.
+# For information on that project, visit: https://github.com/tareksander/twine-rs/blob/main/twee-tools/README.md
+# For information about the TOML file format for this config file, see: https://toml.io/en/
+
+
+# By default, an HTML file with the name of the story will be generated in the directory
+# of the config.toml.
+# output = "path/to/file.html"
+
+# The stylesheet files. By default only story.css.
+style = ["story.css"]
+
+# The story script files. By default only story.js.
+script = ["story.js"]
+
+# The main twee file the compiler will look for.
+main = "story.twee"
+
+
+
+
